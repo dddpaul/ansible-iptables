@@ -1,5 +1,4 @@
 ---
 - include: manage.yml
-- include: nat_masquerade.yml
 - include: persist.yml
   when: iptables_persistent
