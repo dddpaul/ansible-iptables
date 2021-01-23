@@ -8,4 +8,7 @@
 
 - include: manage.yml
 
+- include: save.yml
+  when: iptables_persistent
+
 - include: nat_masquerade.yml
