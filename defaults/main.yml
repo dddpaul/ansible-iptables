@@ -100,3 +100,6 @@ iptables_flush_rules: false
 # Defines if rules should be persistent across reboots
 iptables_persistent: true
 iptables_save_file: '/etc/iptables.rules'
+
+# Defines dependent services which modify iptables and needs to be restarted after flush (like docker)
+iptables_restart_dependent_services: []

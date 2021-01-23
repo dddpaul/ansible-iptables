@@ -46,7 +46,7 @@
     state: "{{ item.1.state | default (omit) }}"
     table: "{{ item.1.table | default (omit) }}"
     to_ports: "{{ item.1.to_ports | default (omit) }}"
-  register: rules
+  register: iptables_rules
   with_subelements:
     - '{{ iptables_chains }}'
     - rules
@@ -62,3 +62,10 @@
   command: "iptables -P {{ item.item.name }} {{ item.item.policy }}"
   with_items: '{{ policies.results }}'
   when: item.rc == 1
+
+- name: Restart dependent services
+  systemd:
+    name: "{{ item }}"
+    state: restarted
+  with_items: "{{ iptables_restart_dependent_services }}"
+  when: iptables_flush_rules or iptables_flush_chains
