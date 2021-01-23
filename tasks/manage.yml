@@ -35,7 +35,7 @@
     comment: "{{ item.1.comment | default (omit) }}"
     ctstate: "{{ item.1.ctstate | default (omit) }}"
     source: "{{ item.1.source | default (omit) }}"
-    source_port: "{{ item.1.destination_port | default (omit) }}"
+    source_port: "{{ item.1.source_port | default (omit) }}"
     destination: "{{ item.1.destination | default (omit) }}"
     destination_port: "{{ item.1.destination_port | default (omit) }}"
     goto: "{{ item.1.goto | default (omit) }}"
