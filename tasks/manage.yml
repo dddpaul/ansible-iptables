@@ -1,4 +1,7 @@
 ---
+# - name: debug
+#   debug: var=iptables_chains
+
 - name: manage | flush rules
   command: "iptables -F"
   when: iptables_flush_rules
@@ -25,9 +28,6 @@
   when: >
         item.state == "absent" and
         item.name in iptables_chains_check.stdout_lines
-
-- name: debug
-  debug: var=iptables_chains
 
 - name: manage | managing iptables rules
   iptables:
