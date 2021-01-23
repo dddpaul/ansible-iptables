@@ -1,4 +1,4 @@
-Role Name
+ansible-iptables
 =========
 
 An [Ansible] role to manage [iptables] firewall
@@ -148,7 +148,7 @@ Example Playbook
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
