@@ -1,0 +1,31 @@
+---
+- name: persist | disable potentially conflicting standard services
+  service:
+    name: "{{ item }}"
+    state: stopped
+    enabled: false
+  with_items:
+    - 'iptables'
+    - 'ip6tables'
+    - 'firewalld'
+    - 'ufw'
+  ignore_errors: true
+  when: iptables_persistent
+
+- name: persist | save firewall current state to file
+  community.general.iptables_state:
+    state: saved
+    path: "{{ iptables_save_file }}"
+
+- name: persist | copy systemd unit file
+  template:
+    src: "iptables-restore.service.j2"
+    dest: "/etc/systemd/system/iptables-restore.service"
+    backup: true
+
+- name: persist | enable and restart systemd service
+  systemd:
+    name: iptables-restore
+    daemon_reload: true
+    state: restarted
+    enabled: true

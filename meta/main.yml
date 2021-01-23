@@ -15,7 +15,7 @@ galaxy_info:
         - bionic
         - focal
     - name: Debian
-        versions:
+      versions:
         - jessie
         - lenny
         - sid

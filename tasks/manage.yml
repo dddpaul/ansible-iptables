@@ -51,25 +51,6 @@
     - '{{ iptables_chains }}'
     - rules
 
-- name: manage | saving persistent rules (if enabled)
-  shell: "iptables-save -c > {{ iptables_save_file }}"
-  when: >
-        ansible_os_family == "Debian" and
-        iptables_persistent and
-        (rules.changed or
-        iptables_persistent_enabled.changed)
-
-- name: manage | saving persistent rules (if enabled)
-  command: "service {{ item }} save"
-  with_items:
-    - 'iptables'
-    - 'ip6tables'
-  when: >
-        ansible_os_family == "RedHat" and
-        iptables_persistent and
-        (rules.changed or
-        iptables_persistent_enabled.changed)
-
 - name: manage | capturing default policies
   shell: "iptables -L -v -n | grep \"Chain {{ item.name }}\" | cut -d \" \" -f4 | grep \"{{ item.policy }}\""
   register: policies

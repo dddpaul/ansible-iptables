@@ -1,14 +1,5 @@
 ---
-# tasks file for ansible-iptables
-- include: debian.yml
-  when: ansible_os_family == "Debian"
-
-- include: redhat.yml
-  when: ansible_os_family == "RedHat"
-
 - include: manage.yml
-
-- include: save.yml
-  when: iptables_persistent
-
 - include: nat_masquerade.yml
+- include: persist.yml
+  when: iptables_persistent
