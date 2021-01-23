@@ -26,20 +26,26 @@
         item.state == "absent" and
         item.name in iptables_chains_check.stdout_lines
 
+- name: debug
+  debug: var=iptables_chains
+
 - name: manage | managing iptables rules
   iptables:
     chain: "{{ item.0.name }}"
-    comment: "{{ item.1.comment|default (omit) }}"
-    ctstate: "{{ item.1.ctstate|default (omit) }}"
-    destination_port: "{{ item.1.destination_port|default (omit) }}"
-    goto: "{{ item.1.goto|default (omit) }}"
-    in_interface: "{{ item.1.in_interface|default (omit) }}"
-    jump: "{{ item.1.jump|default (omit) }}"
-    limit: "{{ item.1.limit|default (omit) }}"
-    protocol: "{{ item.1.protocol|default (omit) }}"
-    state: "{{ item.1.state|default (omit) }}"
-    table: "{{ item.1.table|default (omit) }}"
-    to_ports: "{{ item.1.to_ports|default (omit) }}"
+    comment: "{{ item.1.comment | default (omit) }}"
+    ctstate: "{{ item.1.ctstate | default (omit) }}"
+    source: "{{ item.1.source | default (omit) }}"
+    source_port: "{{ item.1.destination_port | default (omit) }}"
+    destination: "{{ item.1.destination | default (omit) }}"
+    destination_port: "{{ item.1.destination_port | default (omit) }}"
+    goto: "{{ item.1.goto | default (omit) }}"
+    in_interface: "{{ item.1.in_interface | default (omit) }}"
+    jump: "{{ item.1.jump | default (omit) }}"
+    limit: "{{ item.1.limit | default (omit) }}"
+    protocol: "{{ item.1.protocol | default (omit) }}"
+    state: "{{ item.1.state | default (omit) }}"
+    table: "{{ item.1.table | default (omit) }}"
+    to_ports: "{{ item.1.to_ports | default (omit) }}"
   register: rules
   with_subelements:
     - '{{ iptables_chains }}'
