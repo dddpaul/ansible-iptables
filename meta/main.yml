@@ -11,11 +11,9 @@ galaxy_info:
         - 8
     - name: Ubuntu
       versions:
-        - trusty
-        - utopic
-        - vivid
-        - wily
         - xenial
+        - bionic
+        - focal
     - name: Debian
         versions:
         - jessie
