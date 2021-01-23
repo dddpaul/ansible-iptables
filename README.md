@@ -158,5 +158,9 @@ Larry Smith Jr.
 - http://everythingshouldbevirtual.com
 - mrlesmithjr [at] gmail.com
 
+Pavel Derendyaev
+- dddpaul [at] gmail.com
+
+
 [Ansible]: <https://www.ansible.com>
 [iptables]: <https://www.netfilter.org/>
